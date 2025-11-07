@@ -1,0 +1,184 @@
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+
+// Personal Bio Website — Single-file React component
+// Usage: Drop this file into a React project (Vite / Create React App / Next.js page)
+// Requires: Tailwind CSS + framer-motion (optional). Replace placeholder data with yours.
+
+export default function BioPage() {
+  const [dark, setDark] = useState(false);
+
+  const profile = {
+    name: "Your Name",
+    title: "Product Designer · Frontend Engineer · Storyteller",
+    location: "Dhaka, Bangladesh",
+    email: "you@example.com",
+    resume: "/resume.pdf",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9a6f8b6d5f7d2c3b",
+    bio: `Hi — I'm a designer and developer who builds delightful interfaces and thoughtful products. I care about clarity, accessible experiences, and fast performant UIs.`,
+    socials: [
+      { name: "GitHub", href: "https://github.com/yourname" },
+      { name: "LinkedIn", href: "https://linkedin.com/in/yourname" },
+      { name: "Twitter", href: "https://twitter.com/yourhandle" },
+    ],
+    skills: ["React", "TypeScript", "Tailwind CSS", "Design Systems", "UX Research"],
+    projects: [
+      {
+        title: "Kahani Suno — Interactive Story App",
+        desc: "An original storytelling experience with branching narratives and audio-first design.",
+        link: "#",
+      },
+      {
+        title: "Sails of the Storm — Remix Player",
+        desc: "A music-driven micro-site with waveforms and live-playback sync.",
+        link: "#",
+      },
+    ],
+  };
+
+  return (
+    <div className={dark ? "min-h-screen bg-gray-900 text-gray-100" : "min-h-screen bg-gray-50 text-gray-900"}>
+      <div className="max-w-4xl mx-auto p-6">
+        <header className="flex items-center justify-between py-4">
+          <div className="flex items-center gap-4">
+            <img src={profile.avatar} alt="avatar" className="w-14 h-14 rounded-full object-cover shadow" />
+            <div>
+              <h1 className="text-xl font-semibold">{profile.name}</h1>
+              <p className="text-sm opacity-80">{profile.title}</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setDark(!dark)}
+              aria-label="Toggle theme"
+              className="px-3 py-1 rounded-full border hover:opacity-90"
+            >
+              {dark ? "☀️ Light" : "🌙 Dark"}
+            </button>
+
+            <a
+              href={profile.resume}
+              className="inline-block px-4 py-2 rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 text-white text-sm shadow"
+              download
+            >
+              Download CV
+            </a>
+          </div>
+        </header>
+
+        <main className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <section className="md:col-span-2 space-y-6">
+            <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+              <h2 className="text-2xl font-bold">About</h2>
+              <p className="mt-2 leading-relaxed text-lg">{profile.bio}</p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {profile.socials.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm px-3 py-1 rounded-md border hover:bg-gray-100/60"
+                  >
+                    {s.name}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div className="mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.08 }}>
+              <h3 className="text-xl font-semibold">Selected Projects</h3>
+              <div className="mt-3 grid gap-3">
+                {profile.projects.map((p) => (
+                  <article key={p.title} className={dark ? "p-4 rounded-lg bg-gray-800/60" : "p-4 rounded-lg bg-white shadow-sm"}>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h4 className="font-medium">{p.title}</h4>
+                        <p className="text-sm mt-1 opacity-80">{p.desc}</p>
+                      </div>
+                      <a href={p.link} className="text-sm opacity-90 underline ml-4">
+                        View
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div className="mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.16 }}>
+              <h3 className="text-xl font-semibold">Experience</h3>
+              <ul className="mt-3 space-y-3">
+                <li className={dark ? "p-3 rounded bg-gray-800/50" : "p-3 rounded bg-white shadow-sm"}>
+                  <div className="flex justify-between">
+                    <div>
+                      <div className="text-sm font-medium">Senior Frontend Engineer</div>
+                      <div className="text-xs opacity-70">Acme Co — 2021–Present</div>
+                    </div>
+                    <div className="text-xs opacity-70">Remote</div>
+                  </div>
+                </li>
+
+                <li className={dark ? "p-3 rounded bg-gray-800/50" : "p-3 rounded bg-white shadow-sm"}>
+                  <div className="flex justify-between">
+                    <div>
+                      <div className="text-sm font-medium">Product Designer</div>
+                      <div className="text-xs opacity-70">Indie — 2018–2021</div>
+                    </div>
+                    <div className="text-xs opacity-70">Dhaka</div>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+          </section>
+
+          <aside className={dark ? "p-4 rounded-lg bg-gray-800/50" : "p-4 rounded-lg bg-white shadow-sm"}>
+            <div>
+              <h4 className="text-lg font-semibold">Contact</h4>
+              <p className="text-sm opacity-80 mt-1">{profile.location} · <a href={`mailto:${profile.email}`} className="underline">{profile.email}</a></p>
+
+              <div className="mt-4">
+                <h5 className="text-sm font-medium">Skills</h5>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {profile.skills.map((s) => (
+                    <span key={s} className="text-xs px-2 py-1 rounded-full border">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <h5 className="text-sm font-medium">Quick Links</h5>
+                <ul className="mt-2 space-y-1 text-sm opacity-90">
+                  <li>
+                    <a href="#" className="underline">Publications</a>
+                  </li>
+                  <li>
+                    <a href="#" className="underline">Talks</a>
+                  </li>
+                  <li>
+                    <a href="#" className="underline">Open-source</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mt-6">
+                <a href={profile.resume} download className="block text-center px-3 py-2 rounded-md border">
+                  Download Resume
+                </a>
+              </div>
+            </div>
+          </aside>
+        </main>
+
+        <footer className="mt-10 text-center text-sm opacity-70">
+          <p>
+            Built with ❤️ · <strong>{profile.name}</strong> — {new Date().getFullYear()}
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
+}
