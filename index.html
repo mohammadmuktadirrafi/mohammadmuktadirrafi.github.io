@@ -11,9 +11,10 @@ tailwind.config = {
     extend: {
       colors: {
         primary: '#0f172a',
-        secondary: '#f8fafc',
-        accent: '#065f46',
-        lightbg: '#f3f4f6'
+        secondary: '#f0fdf4',
+        accent: '#10b981', /* Emerald Green */
+        accent-dark: '#047857',
+        lightbg: '#ecfdf5'
       },
       fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] }
     }
@@ -24,85 +25,89 @@ html { scroll-behavior: smooth; }
 
 /* Animations */
 @keyframes floatUp {
-  0% { opacity: 0; transform: translateY(10px); }
-  60% { opacity: 1; transform: translateY(-2px); }
+  0% { opacity: 0; transform: translateY(20px); }
+  60% { opacity: 1; transform: translateY(-5px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-.intro-line { animation: floatUp 700ms cubic-bezier(.2,.9,.2,1) both; }
+.intro-line { animation: floatUp 800ms cubic-bezier(.2,.9,.2,1) both; }
 
-/* Glass effect */
-.glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(6px); border-radius: 1rem; }
-.soft-card { box-shadow: 0 10px 30px rgba(2,6,23,0.06); border-radius: 1rem; }
+/* Glass and neon effect */
+.glass { background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); border-radius: 1.5rem; box-shadow: 0 8px 25px rgba(16,185,129,0.2); }
+.soft-card { box-shadow: 0 12px 35px rgba(16,185,129,0.25); border-radius: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.soft-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(16,185,129,0.35); }
 </style>
 </head>
 <body class="bg-secondary text-primary font-sans antialiased">
 
-<header class="sticky top-0 z-50 bg-white/60 backdrop-blur-md border-b border-gray-100">
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-<a href="#hero" class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-400 flex items-center justify-center text-white font-bold soft-card">MM</div><span class="font-semibold">Mohammad M. Rafi</span></a>
-<nav class="hidden sm:flex items-center gap-6 text-sm">
-<a href="#snapshot" class="hover:text-accent transition">Snapshot</a>
-<a href="#academic" class="hover:text-accent transition">School</a>
-<a href="#contact" class="hover:text-accent transition">Connect</a>
+<header class="sticky top-0 z-50 bg-white/40 backdrop-blur-lg border-b border-gray-200 shadow-md">
+<div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+<a href="#hero" class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-white font-bold soft-card">MM</div>
+<span class="font-bold text-lg text-accent-dark">Mohammad M. Rafi</span>
+</a>
+<nav class="hidden sm:flex items-center gap-8 text-sm font-semibold">
+<a href="#snapshot" class="hover:text-accent-dark transition">Snapshot</a>
+<a href="#academic" class="hover:text-accent-dark transition">School</a>
+<a href="#contact" class="hover:text-accent-dark transition">Connect</a>
 </nav>
 </div>
 </header>
 
-<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<main class="max-w-5xl mx-auto px-6 py-16">
 
 <!-- Hero -->
-<section id="hero" class="text-center mb-16">
-<div class="mx-auto w-44 h-44 mb-6 rounded-full overflow-hidden border-4 border-accent shadow-xl">
-<img src="1237.jpg" alt="Mohammad Muktadir Rafi" class="object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/176x176/f3f4f6/065f46?text=MMR';">
+<section id="hero" class="text-center mb-20">
+<div class="mx-auto w-48 h-48 mb-6 rounded-full overflow-hidden border-4 border-accent shadow-2xl">
+<img src="1237.jpg" alt="Mohammad Muktadir Rafi" class="object-cover w-full h-full rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/192x192/ecfdf5/065f46?text=MMR';">
 </div>
-<h1 class="text-5xl font-extrabold mb-3">Mohammad Muktadir Rafi</h1>
-<div class="mt-4 space-y-2 text-lg max-w-2xl mx-auto">
-<p class="intro-line text-gray-700 inline-block">Just a boy with <strong>Billion Dreams</strong>.</p>
-<p class="intro-line text-gray-600">Student • Aspiring Mechanical Engineer • Curious about machines & design</p>
+<h1 class="text-6xl sm:text-7xl font-extrabold mb-4 leading-tight text-accent-dark">Mohammad Muktadir Rafi</h1>
+<div class="mt-6 space-y-3 text-lg max-w-3xl mx-auto">
+<p class="intro-line text-accent font-semibold">Just a boy with <strong>Billion Dreams</strong>.</p>
+<p class="intro-line text-gray-700">Student • Aspiring Mechanical Engineer • Curious about machines & design</p>
 </div>
-<div class="mt-8 flex items-center justify-center gap-4">
-<a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent text-white font-semibold shadow-lg hover:translate-y-[-2px] transition-transform">Connect</a>
-<a href="#snapshot" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-gray-200 bg-white glass">Snapshot</a>
+<div class="mt-10 flex items-center justify-center gap-6">
+<a href="#contact" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-accent text-white font-semibold shadow-lg hover:shadow-xl hover:translate-y-[-3px] transition-transform duration-300">Connect</a>
+<a href="#snapshot" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-accent bg-white glass text-accent-dark font-semibold">Snapshot</a>
 </div>
 </section>
 
 <!-- Snapshot -->
-<section id="snapshot" class="mb-14">
-<h3 class="text-3xl font-bold text-center mb-6">Personal Snapshot</h3>
-<div class="max-w-sm mx-auto bg-white p-6 rounded-xl soft-card border border-gray-100 space-y-4">
-<div class="flex justify-between items-center text-md"><span class="text-gray-600">Birth Date</span><span class="font-semibold">5 January</span></div>
-<div class="flex justify-between items-center text-md"><span class="text-gray-600">Blood Group</span><span class="font-semibold">O+</span></div>
-<div class="flex justify-between items-center text-md border-t pt-3 border-gray-100"><span class="text-gray-600">Aspiration</span><span class="font-bold text-accent">Mechanical Engineer</span></div>
+<section id="snapshot" class="mb-20">
+<h3 class="text-4xl font-bold text-center mb-8 text-accent-dark">Personal Snapshot</h3>
+<div class="max-w-md mx-auto bg-white p-8 rounded-2xl soft-card border border-accent/30 space-y-5">
+<div class="flex justify-between items-center text-lg"><span class="text-gray-600">Birth Date</span><span class="font-semibold text-accent-dark">5 January</span></div>
+<div class="flex justify-between items-center text-lg"><span class="text-gray-600">Blood Group</span><span class="font-semibold text-accent-dark">O+</span></div>
+<div class="flex justify-between items-center text-lg border-t pt-4 border-accent/20"><span class="text-gray-600">Aspiration</span><span class="font-bold text-accent">Mechanical Engineer</span></div>
 </div>
 </section>
 
 <!-- Academic -->
-<section id="academic" class="mb-14">
-<h3 class="text-3xl font-bold text-center mb-6">Academic Focus</h3>
-<div class="max-w-sm mx-auto bg-white p-6 rounded-xl soft-card border border-gray-100 space-y-4">
-<div class="flex justify-between items-center text-md"><span class="text-gray-600">Current Status</span><span class="font-semibold">Student</span></div>
-<div class="flex justify-between items-center text-md border-t pt-3 border-gray-100"><span class="text-gray-600">College</span><span class="font-bold text-accent">Madan Mohan College</span></div>
-<div class="flex justify-between items-center text-md border-t pt-3 border-gray-100"><span class="text-gray-600">School</span><span class="font-bold text-accent">RUKEYA KHATUN LYCEUM SCHOOL</span></div>
+<section id="academic" class="mb-20">
+<h3 class="text-4xl font-bold text-center mb-8 text-accent-dark">Academic Focus</h3>
+<div class="max-w-md mx-auto bg-white p-8 rounded-2xl soft-card border border-accent/30 space-y-5">
+<div class="flex justify-between items-center text-lg"><span class="text-gray-600">Current Status</span><span class="font-semibold text-accent-dark">Student</span></div>
+<div class="flex justify-between items-center text-lg border-t pt-4 border-accent/20"><span class="text-gray-600">College</span><span class="font-bold text-accent">Madan Mohan College</span></div>
+<div class="flex justify-between items-center text-lg border-t pt-4 border-accent/20"><span class="text-gray-600">School</span><span class="font-bold text-accent">RUKEYA KHATUN LYCEUM SCHOOL</span></div>
 </div>
 </section>
 
 <!-- Contact -->
-<section id="contact" class="mb-8">
-<h3 class="text-3xl font-bold text-center mb-6">Connect With Me</h3>
-<div class="max-w-md mx-auto bg-white p-8 rounded-xl soft-card border border-gray-100 text-center">
+<section id="contact" class="mb-16">
+<h3 class="text-4xl font-bold text-center mb-8 text-accent-dark">Connect With Me</h3>
+<div class="max-w-md mx-auto bg-white p-10 rounded-2xl soft-card border border-accent/30 text-center">
 <p class="text-gray-700 mb-6">Let's connect and discuss the journey to engineering! Reach out on social or send an email.</p>
-<a href="mailto:muktadirrafi115@gmail.com" class="block w-full py-3 rounded-lg bg-accent text-white font-semibold mb-4">Email: muktadirrafi115@gmail.com</a>
-<div class="flex items-center justify-center gap-6">
-<a href="https://www.instagram.com/mohammadmuktadirrafi" target="_blank" class="text-gray-500 hover:text-accent transition"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5zm0 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zM16.7 5.3c-.646 0-1.17.524-1.17 1.17s.524 1.17 1.17 1.17 1.17-.524 1.17-1.17-.524-1.17-1.17-1.17z"/></svg></a>
-<a href="https://www.facebook.com/mohammadmuktadirrafi" target="_blank" class="text-gray-500 hover:text-accent transition"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm3 8h-2v2h2v3h-3v-3h-2v-2h2v-1.2c0-1.2.664-1.8 2-1.8h1v2h-1c-.542 0-1 .096-1 .5v.7h2l-.2 2z"/></svg></a>
-<a href="#" class="text-gray-500 hover:text-accent transition" aria-label="LinkedIn"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+<a href="mailto:muktadirrafi115@gmail.com" class="block w-full py-3 rounded-xl bg-accent text-white font-semibold mb-6 hover:shadow-lg transition-shadow duration-300">Email: muktadirrafi115@gmail.com</a>
+<div class="flex items-center justify-center gap-8">
+<a href="https://www.instagram.com/mohammadmuktadirrafi" target="_blank" class="text-accent-dark hover:text-accent transition"><svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5zm0 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zM16.7 5.3c-.646 0-1.17.524-1.17 1.17s.524 1.17 1.17 1.17 1.17-.524 1.17-1.17-.524-1.17-1.17-1.17z"/></svg></a>
+<a href="https://www.facebook.com/mohammadmuktadirrafi" target="_blank" class="text-accent-dark hover:text-accent transition"><svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm3 8h-2v2h2v3h-3v-3h-2v-2h2v-1.2c0-1.2.664-1.8 2-1.8h1v2h-1c-.542 0-1 .096-1 .5v.7h2l-.2 2z"/></svg></a>
+<a href="#" class="text-accent-dark hover:text-accent transition" aria-label="LinkedIn"><svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
 </div>
 </div>
 </section>
 
 </main>
 
-<footer class="mt-12 py-6 bg-lightbg border-t border-gray-200 text-center text-sm text-gray-500">
+<footer class="mt-16 py-6 bg-lightbg border-t border-accent/30 text-center text-sm text-gray-500">
 <p>&copy; <span id="year"></span> Mohammad Muktadir Rafi. All Rights Reserved.</p>
 </footer>
 
