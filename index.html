@@ -20,9 +20,7 @@ tailwind.config = {
     }
   }
 }
-
 html { scroll-behavior: smooth; }
-
 /* Animations */
 @keyframes floatUp {
   0% { opacity: 0; transform: translateY(20px); }
@@ -30,7 +28,6 @@ html { scroll-behavior: smooth; }
   100% { opacity: 1; transform: translateY(0); }
 }
 .intro-line { animation: floatUp 800ms cubic-bezier(.2,.9,.2,1) both; }
-
 /* Glass and neon effect */
 .glass { background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); border-radius: 1.5rem; box-shadow: 0 8px 25px rgba(16,185,129,0.2); }
 .soft-card { box-shadow: 0 12px 35px rgba(16,185,129,0.25); border-radius: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -38,12 +35,11 @@ html { scroll-behavior: smooth; }
 </style>
 </head>
 <body class="bg-secondary text-primary font-sans antialiased">
-
 <header class="sticky top-0 z-50 bg-white/40 backdrop-blur-lg border-b border-gray-200 shadow-md">
 <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
 <a href="#hero" class="flex items-center gap-3">
 <div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-white font-bold soft-card">MM</div>
-<span class="font-bold text-lg text-accent-dark">Mohammad M. Rafi</span>
+<span class="font-bold text-lg text-accent-dark">Mohammad Muktadir Rafi</span>
 </a>
 <nav class="hidden sm:flex items-center gap-8 text-sm font-semibold">
 <a href="#snapshot" class="hover:text-accent-dark transition">Snapshot</a>
@@ -52,9 +48,7 @@ html { scroll-behavior: smooth; }
 </nav>
 </div>
 </header>
-
 <main class="max-w-5xl mx-auto px-6 py-16">
-
 <!-- Hero -->
 <section id="hero" class="text-center mb-20">
 <div class="mx-auto w-48 h-48 mb-6 rounded-full overflow-hidden border-4 border-accent shadow-2xl">
@@ -70,7 +64,6 @@ html { scroll-behavior: smooth; }
 <a href="#snapshot" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-accent bg-white glass text-accent-dark font-semibold">Snapshot</a>
 </div>
 </section>
-
 <!-- Snapshot -->
 <section id="snapshot" class="mb-20">
 <h3 class="text-4xl font-bold text-center mb-8 text-accent-dark">Personal Snapshot</h3>
@@ -80,7 +73,6 @@ html { scroll-behavior: smooth; }
 <div class="flex justify-between items-center text-lg border-t pt-4 border-accent/20"><span class="text-gray-600">Aspiration</span><span class="font-bold text-accent">Mechanical Engineer</span></div>
 </div>
 </section>
-
 <!-- Academic -->
 <section id="academic" class="mb-20">
 <h3 class="text-4xl font-bold text-center mb-8 text-accent-dark">Academic Focus</h3>
@@ -90,7 +82,6 @@ html { scroll-behavior: smooth; }
 <div class="flex justify-between items-center text-lg border-t pt-4 border-accent/20"><span class="text-gray-600">School</span><span class="font-bold text-accent">RUKEYA KHATUN LYCEUM SCHOOL</span></div>
 </div>
 </section>
-
 <!-- Contact -->
 <section id="contact" class="mb-16">
 <h3 class="text-4xl font-bold text-center mb-8 text-accent-dark">Connect With Me</h3>
@@ -104,16 +95,10 @@ html { scroll-behavior: smooth; }
 </div>
 </div>
 </section>
-
 </main>
-
 <footer class="mt-16 py-6 bg-lightbg border-t border-accent/30 text-center text-sm text-gray-500">
 <p>&copy; <span id="year"></span> Mohammad Muktadir Rafi. All Rights Reserved.</p>
 </footer>
-
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
