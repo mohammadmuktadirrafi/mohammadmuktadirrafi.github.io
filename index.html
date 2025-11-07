@@ -1,184 +1,114 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-
-// Personal Bio Website — Single-file React component
-// Usage: Drop this file into a React project (Vite / Create React App / Next.js page)
-// Requires: Tailwind CSS + framer-motion (optional). Replace placeholder data with yours.
-
-export default function BioPage() {
-  const [dark, setDark] = useState(false);
-
-  const profile = {
-    name: "Your Name",
-    title: "Product Designer · Frontend Engineer · Storyteller",
-    location: "Dhaka, Bangladesh",
-    email: "you@example.com",
-    resume: "/resume.pdf",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9a6f8b6d5f7d2c3b",
-    bio: `Hi — I'm a designer and developer who builds delightful interfaces and thoughtful products. I care about clarity, accessible experiences, and fast performant UIs.`,
-    socials: [
-      { name: "GitHub", href: "https://github.com/yourname" },
-      { name: "LinkedIn", href: "https://linkedin.com/in/yourname" },
-      { name: "Twitter", href: "https://twitter.com/yourhandle" },
-    ],
-    skills: ["React", "TypeScript", "Tailwind CSS", "Design Systems", "UX Research"],
-    projects: [
-      {
-        title: "Kahani Suno — Interactive Story App",
-        desc: "An original storytelling experience with branching narratives and audio-first design.",
-        link: "#",
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammad Muktadir Rafi | Billion Dreams</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#0f172a',
+        secondary: '#f8fafc',
+        accent: '#065f46',
+        lightbg: '#f3f4f6'
       },
-      {
-        title: "Sails of the Storm — Remix Player",
-        desc: "A music-driven micro-site with waveforms and live-playback sync.",
-        link: "#",
-      },
-    ],
-  };
-
-  return (
-    <div className={dark ? "min-h-screen bg-gray-900 text-gray-100" : "min-h-screen bg-gray-50 text-gray-900"}>
-      <div className="max-w-4xl mx-auto p-6">
-        <header className="flex items-center justify-between py-4">
-          <div className="flex items-center gap-4">
-            <img src={profile.avatar} alt="avatar" className="w-14 h-14 rounded-full object-cover shadow" />
-            <div>
-              <h1 className="text-xl font-semibold">{profile.name}</h1>
-              <p className="text-sm opacity-80">{profile.title}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setDark(!dark)}
-              aria-label="Toggle theme"
-              className="px-3 py-1 rounded-full border hover:opacity-90"
-            >
-              {dark ? "☀️ Light" : "🌙 Dark"}
-            </button>
-
-            <a
-              href={profile.resume}
-              className="inline-block px-4 py-2 rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 text-white text-sm shadow"
-              download
-            >
-              Download CV
-            </a>
-          </div>
-        </header>
-
-        <main className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <section className="md:col-span-2 space-y-6">
-            <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-              <h2 className="text-2xl font-bold">About</h2>
-              <p className="mt-2 leading-relaxed text-lg">{profile.bio}</p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {profile.socials.map((s) => (
-                  <a
-                    key={s.name}
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm px-3 py-1 rounded-md border hover:bg-gray-100/60"
-                  >
-                    {s.name}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div className="mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.08 }}>
-              <h3 className="text-xl font-semibold">Selected Projects</h3>
-              <div className="mt-3 grid gap-3">
-                {profile.projects.map((p) => (
-                  <article key={p.title} className={dark ? "p-4 rounded-lg bg-gray-800/60" : "p-4 rounded-lg bg-white shadow-sm"}>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="font-medium">{p.title}</h4>
-                        <p className="text-sm mt-1 opacity-80">{p.desc}</p>
-                      </div>
-                      <a href={p.link} className="text-sm opacity-90 underline ml-4">
-                        View
-                      </a>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div className="mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.16 }}>
-              <h3 className="text-xl font-semibold">Experience</h3>
-              <ul className="mt-3 space-y-3">
-                <li className={dark ? "p-3 rounded bg-gray-800/50" : "p-3 rounded bg-white shadow-sm"}>
-                  <div className="flex justify-between">
-                    <div>
-                      <div className="text-sm font-medium">Senior Frontend Engineer</div>
-                      <div className="text-xs opacity-70">Acme Co — 2021–Present</div>
-                    </div>
-                    <div className="text-xs opacity-70">Remote</div>
-                  </div>
-                </li>
-
-                <li className={dark ? "p-3 rounded bg-gray-800/50" : "p-3 rounded bg-white shadow-sm"}>
-                  <div className="flex justify-between">
-                    <div>
-                      <div className="text-sm font-medium">Product Designer</div>
-                      <div className="text-xs opacity-70">Indie — 2018–2021</div>
-                    </div>
-                    <div className="text-xs opacity-70">Dhaka</div>
-                  </div>
-                </li>
-              </ul>
-            </motion.div>
-          </section>
-
-          <aside className={dark ? "p-4 rounded-lg bg-gray-800/50" : "p-4 rounded-lg bg-white shadow-sm"}>
-            <div>
-              <h4 className="text-lg font-semibold">Contact</h4>
-              <p className="text-sm opacity-80 mt-1">{profile.location} · <a href={`mailto:${profile.email}`} className="underline">{profile.email}</a></p>
-
-              <div className="mt-4">
-                <h5 className="text-sm font-medium">Skills</h5>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {profile.skills.map((s) => (
-                    <span key={s} className="text-xs px-2 py-1 rounded-full border">
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <h5 className="text-sm font-medium">Quick Links</h5>
-                <ul className="mt-2 space-y-1 text-sm opacity-90">
-                  <li>
-                    <a href="#" className="underline">Publications</a>
-                  </li>
-                  <li>
-                    <a href="#" className="underline">Talks</a>
-                  </li>
-                  <li>
-                    <a href="#" className="underline">Open-source</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-6">
-                <a href={profile.resume} download className="block text-center px-3 py-2 rounded-md border">
-                  Download Resume
-                </a>
-              </div>
-            </div>
-          </aside>
-        </main>
-
-        <footer className="mt-10 text-center text-sm opacity-70">
-          <p>
-            Built with ❤️ · <strong>{profile.name}</strong> — {new Date().getFullYear()}
-          </p>
-        </footer>
-      </div>
-    </div>
-  );
+      fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] }
+    }
+  }
 }
+
+html { scroll-behavior: smooth; }
+
+/* Animations */
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(10px); }
+  60% { opacity: 1; transform: translateY(-2px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.intro-line { animation: floatUp 700ms cubic-bezier(.2,.9,.2,1) both; }
+
+/* Glass effect */
+.glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(6px); border-radius: 1rem; }
+.soft-card { box-shadow: 0 10px 30px rgba(2,6,23,0.06); border-radius: 1rem; }
+</style>
+</head>
+<body class="bg-secondary text-primary font-sans antialiased">
+
+<header class="sticky top-0 z-50 bg-white/60 backdrop-blur-md border-b border-gray-100">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+<a href="#hero" class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-400 flex items-center justify-center text-white font-bold soft-card">MM</div><span class="font-semibold">Mohammad M. Rafi</span></a>
+<nav class="hidden sm:flex items-center gap-6 text-sm">
+<a href="#snapshot" class="hover:text-accent transition">Snapshot</a>
+<a href="#academic" class="hover:text-accent transition">School</a>
+<a href="#contact" class="hover:text-accent transition">Connect</a>
+</nav>
+</div>
+</header>
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+<!-- Hero -->
+<section id="hero" class="text-center mb-16">
+<div class="mx-auto w-44 h-44 mb-6 rounded-full overflow-hidden border-4 border-accent shadow-xl">
+<img src="1237.jpg" alt="Mohammad Muktadir Rafi" class="object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/176x176/f3f4f6/065f46?text=MMR';">
+</div>
+<h1 class="text-5xl font-extrabold mb-3">Mohammad Muktadir Rafi</h1>
+<div class="mt-4 space-y-2 text-lg max-w-2xl mx-auto">
+<p class="intro-line text-gray-700 inline-block">Just a boy with <strong>Billion Dreams</strong>.</p>
+<p class="intro-line text-gray-600">Student • Aspiring Mechanical Engineer • Curious about machines & design</p>
+</div>
+<div class="mt-8 flex items-center justify-center gap-4">
+<a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent text-white font-semibold shadow-lg hover:translate-y-[-2px] transition-transform">Connect</a>
+<a href="#snapshot" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-gray-200 bg-white glass">Snapshot</a>
+</div>
+</section>
+
+<!-- Snapshot -->
+<section id="snapshot" class="mb-14">
+<h3 class="text-3xl font-bold text-center mb-6">Personal Snapshot</h3>
+<div class="max-w-sm mx-auto bg-white p-6 rounded-xl soft-card border border-gray-100 space-y-4">
+<div class="flex justify-between items-center text-md"><span class="text-gray-600">Birth Date</span><span class="font-semibold">5 January</span></div>
+<div class="flex justify-between items-center text-md"><span class="text-gray-600">Blood Group</span><span class="font-semibold">O+</span></div>
+<div class="flex justify-between items-center text-md border-t pt-3 border-gray-100"><span class="text-gray-600">Aspiration</span><span class="font-bold text-accent">Mechanical Engineer</span></div>
+</div>
+</section>
+
+<!-- Academic -->
+<section id="academic" class="mb-14">
+<h3 class="text-3xl font-bold text-center mb-6">Academic Focus</h3>
+<div class="max-w-sm mx-auto bg-white p-6 rounded-xl soft-card border border-gray-100 space-y-4">
+<div class="flex justify-between items-center text-md"><span class="text-gray-600">Current Status</span><span class="font-semibold">Student</span></div>
+<div class="flex justify-between items-center text-md border-t pt-3 border-gray-100"><span class="text-gray-600">College</span><span class="font-bold text-accent">Madan Mohan College</span></div>
+<div class="flex justify-between items-center text-md border-t pt-3 border-gray-100"><span class="text-gray-600">School</span><span class="font-bold text-accent">RUKEYA KHATUN LYCEUM SCHOOL</span></div>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="mb-8">
+<h3 class="text-3xl font-bold text-center mb-6">Connect With Me</h3>
+<div class="max-w-md mx-auto bg-white p-8 rounded-xl soft-card border border-gray-100 text-center">
+<p class="text-gray-700 mb-6">Let's connect and discuss the journey to engineering! Reach out on social or send an email.</p>
+<a href="mailto:muktadirrafi115@gmail.com" class="block w-full py-3 rounded-lg bg-accent text-white font-semibold mb-4">Email: muktadirrafi115@gmail.com</a>
+<div class="flex items-center justify-center gap-6">
+<a href="https://www.instagram.com/mohammadmuktadirrafi" target="_blank" class="text-gray-500 hover:text-accent transition"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5zm0 8c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zM16.7 5.3c-.646 0-1.17.524-1.17 1.17s.524 1.17 1.17 1.17 1.17-.524 1.17-1.17-.524-1.17-1.17-1.17z"/></svg></a>
+<a href="https://www.facebook.com/mohammadmuktadirrafi" target="_blank" class="text-gray-500 hover:text-accent transition"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm3 8h-2v2h2v3h-3v-3h-2v-2h2v-1.2c0-1.2.664-1.8 2-1.8h1v2h-1c-.542 0-1 .096-1 .5v.7h2l-.2 2z"/></svg></a>
+<a href="#" class="text-gray-500 hover:text-accent transition" aria-label="LinkedIn"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="mt-12 py-6 bg-lightbg border-t border-gray-200 text-center text-sm text-gray-500">
+<p>&copy; <span id="year"></span> Mohammad Muktadir Rafi. All Rights Reserved.</p>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
