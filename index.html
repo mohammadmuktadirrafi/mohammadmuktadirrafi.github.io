@@ -6,52 +6,43 @@
 <title>Mohammad Muktadir Rafi | Billion Dreams</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        primary: '#0f172a',
-        secondary: '#f0fdf4',
-        accent: '#10b981', /* Emerald Green */
-        accentDark: '#047857',
-        lightbg: '#ecfdf5'
-      },
-      fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] }
-    }
-  }
-}
-
 html { scroll-behavior: smooth; }
 
-/* Animations */
+/* Soft card shadow for sections */
+.soft-card { 
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25); 
+  border-radius: 1.5rem; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+.soft-card:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35); 
+}
+
+/* Float animation */
 @keyframes floatUp {
   0% { opacity: 0; transform: translateY(20px); }
   60% { opacity: 1; transform: translateY(-5px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 .intro-line { animation: floatUp 800ms cubic-bezier(.2,.9,.2,1) both; }
-
-/* Glass and soft card effect */
-.glass { background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); border-radius: 1.5rem; box-shadow: 0 8px 25px rgba(16,185,129,0.2); }
-.soft-card { box-shadow: 0 12px 35px rgba(16,185,129,0.25); border-radius: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.soft-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(16,185,129,0.35); }
 </style>
 </head>
 <body class="bg-emerald-500 text-white font-sans antialiased">
 
-<!-- Header with profile photo on left -->
+<!-- Header -->
 <header class="sticky top-0 z-50 bg-white/40 backdrop-blur-lg border-b border-gray-200 shadow-md">
   <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href="#hero" class="flex items-center gap-3">
       <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-accent shadow-lg">
         <img src="121.jpg" alt="Mohammad Muktadir Rafi" class="object-cover w-full h-full rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/56x56/ecfdf5/065f46?text=MMR';">
       </div>
-      <span class="font-bold text-lg text-accentDark">Mohammad Muktadir Rafi</span>
+      <span class="font-bold text-lg text-white">Mohammad Muktadir Rafi</span>
     </a>
     <nav class="hidden sm:flex items-center gap-8 text-sm font-semibold">
-      <a href="#snapshot" class="hover:text-accentDark transition">Snapshot</a>
-      <a href="#academic" class="hover:text-accentDark transition">School</a>
-      <a href="#contact" class="hover:text-accentDark transition">Connect</a>
+      <a href="#snapshot" class="hover:text-white/80 transition">Snapshot</a>
+      <a href="#academic" class="hover:text-white/80 transition">School</a>
+      <a href="#contact" class="hover:text-white/80 transition">Connect</a>
     </nav>
   </div>
 </header>
@@ -60,63 +51,59 @@ html { scroll-behavior: smooth; }
 
 <!-- Hero -->
 <section id="hero" class="text-center mb-20">
-  <div class="mx-auto w-48 h-48 mb-6 rounded-full overflow-hidden border-4 border-accent shadow-2xl">
+  <div class="mx-auto w-48 h-48 mb-6 rounded-full overflow-hidden border-4 border-white shadow-2xl">
     <img src="1237.jpg" alt="Mohammad Muktadir Rafi" class="object-cover w-full h-full rounded-full" onerror="this.onerror=null;this.src='https://placehold.co/192x192/ecfdf5/065f46?text=MMR';">
   </div>
-  <h1 class="text-6xl sm:text-7xl font-extrabold mb-4 leading-tight text-accentDark">Mohammad Muktadir Rafi</h1>
+  <h1 class="text-6xl sm:text-7xl font-extrabold mb-4 leading-tight text-white">Mohammad Muktadir Rafi</h1>
   <div class="mt-6 space-y-3 text-lg max-w-3xl mx-auto">
-    <p class="intro-line text-accent font-semibold">Just a boy with <strong>Billion Dreams</strong>.</p>
-    <p class="intro-line text-gray-700">Student • Aspiring Mechanical Engineer • Curious about machines & design</p>
+    <p class="intro-line text-white font-semibold">Just a boy with <strong>Billion Dreams</strong>.</p>
+    <p class="intro-line text-white/90">Student • Aspiring Mechanical Engineer • Curious about machines & design</p>
   </div>
   <div class="mt-10 flex items-center justify-center gap-6">
-    <a href="#contact" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-accent text-black font-semibold shadow-lg hover:shadow-xl hover:translate-y-[-3px] transition-transform duration-300">Connect</a>
-    <a href="#snapshot" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-accent bg-white glass text-accentDark font-semibold">Snapshot</a>
+    <a href="#contact" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-white text-emerald-700 font-semibold shadow-lg hover:shadow-xl hover:bg-gray-100 transition-transform duration-300">Connect</a>
+    <a href="#snapshot" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-emerald-700 text-white font-semibold shadow-lg hover:bg-emerald-600 transition">Snapshot</a>
   </div>
 </section>
 
-<!-- Snapshot -->
+<!-- Personal Snapshot -->
 <section id="snapshot" class="mb-20">
-  <h3 class="text-4xl font-bold text-center mb-8 text-accentDark">Personal Snapshot</h3>
-  <div class="max-w-md mx-auto bg-white p-8 rounded-2xl soft-card border border-accent/30 space-y-5">
-    <div class="flex justify-between items-center text-lg"><span class="text-gray-600">Birth Date</span><span class="font-semibold text-accentDark">5 January</span></div>
-    <div class="flex justify-between items-center text-lg"><span class="text-gray-600">Blood Group</span><span class="font-semibold text-accentDark">O+</span></div>
-    <div class="flex justify-between items-center text-lg border-t pt-4 border-accent/20"><span class="text-gray-600">Aspiration</span><span class="font-bold text-accent">Mechanical Engineer</span></div>
+  <h3 class="text-4xl font-bold text-center mb-8 text-white">Personal Snapshot</h3>
+  <div class="max-w-md mx-auto bg-emerald-700 text-white p-8 rounded-2xl soft-card space-y-5">
+    <div class="flex justify-between items-center text-lg"><span>Birth Date</span><span class="font-semibold">5 January</span></div>
+    <div class="flex justify-between items-center text-lg"><span>Blood Group</span><span class="font-semibold">O+</span></div>
+    <div class="flex justify-between items-center text-lg border-t pt-4 border-white/30"><span>Aspiration</span><span class="font-bold">Mechanical Engineer</span></div>
   </div>
 </section>
 
-<!-- Academic -->
+<!-- Academic Focus -->
 <section id="academic" class="mb-20">
-  <h3 class="text-4xl font-bold text-center mb-8 text-accentDark">Academic Focus</h3>
-  <div class="max-w-md mx-auto bg-white p-8 rounded-2xl soft-card border border-accent/30 space-y-5">
-    <div class="flex justify-between items-center text-lg"><span class="text-gray-600">Current Status</span><span class="font-semibold text-accentDark">Student</span></div>
-    <div class="flex justify-between items-center text-lg border-t pt-4 border-accent/20"><span class="text-gray-600">College</span><span class="font-bold text-accent">Madan Mohan College</span></div>
-    <div class="flex justify-between items-center text-lg border-t pt-4 border-accent/20"><span class="text-gray-600">School</span><span class="font-bold text-accent">RUKEYA KHATUN LYCEUM SCHOOL</span></div>
+  <h3 class="text-4xl font-bold text-center mb-8 text-white">Academic Focus</h3>
+  <div class="max-w-md mx-auto bg-emerald-700 text-white p-8 rounded-2xl soft-card space-y-5">
+    <div class="flex justify-between items-center text-lg"><span>Current Status</span><span class="font-semibold">Student</span></div>
+    <div class="flex justify-between items-center text-lg border-t pt-4 border-white/30"><span>College</span><span class="font-bold">Madan Mohan College</span></div>
+    <div class="flex justify-between items-center text-lg border-t pt-4 border-white/30"><span>School</span><span class="font-bold">RUKEYA KHATUN LYCEUM SCHOOL</span></div>
   </div>
 </section>
 
 <!-- Contact -->
 <section id="contact" class="mb-16">
-  <h3 class="text-4xl font-bold text-center mb-8 text-accentDark">Connect With Me</h3>
-  <div class="max-w-md mx-auto bg-white p-10 rounded-2xl soft-card border border-accent/30 text-center">
-    <p class="text-gray-700 mb-6">Let's connect and discuss the journey to engineering! Reach out on social or send an email.</p>
-    <a href="mailto:muktadirrafi115@gmail.com" class="block w-full py-3 rounded-xl bg-white border border-accent text-black font-semibold mb-6 hover:bg-accent/10 transition duration-300 flex justify-center items-center gap-2">
-      <img src="https://img.icons8.com/ios-glyphs/24/000000/new-post.png"/> Email: muktadirrafi115@gmail.com
-    </a>
+  <h3 class="text-4xl font-bold text-center mb-8 text-white">Connect With Me</h3>
+  <div class="max-w-md mx-auto bg-white text-black p-10 rounded-2xl soft-card text-center">
+    <p class="mb-6">Let's connect and discuss the journey to engineering! Reach out on social or send an email.</p>
+    <a href="mailto:muktadirrafi115@gmail.com" class="block w-full py-3 rounded-xl bg-white text-black font-semibold mb-6 hover:bg-gray-100 transition">Email: muktadirrafi115@gmail.com</a>
     <div class="flex items-center justify-center gap-8">
-      <a href="https://www.instagram.com/mohammadmuktadirrafi" target="_blank" class="text-accentDark hover:text-accent transition flex items-center gap-1">
+      <a href="https://www.instagram.com/mohammadmuktadirrafi" target="_blank" class="flex items-center gap-2 text-emerald-700 hover:text-emerald-600 transition">
         <img src="https://img.icons8.com/ios-glyphs/24/10b981/instagram-new.png"/> Instagram
       </a>
-      <a href="https://www.facebook.com/mohammadmuktadirrafi" target="_blank" class="text-accentDark hover:text-accent transition flex items-center gap-1">
+      <a href="https://www.facebook.com/mohammadmuktadirrafi" target="_blank" class="flex items-center gap-2 text-emerald-700 hover:text-emerald-600 transition">
         <img src="https://img.icons8.com/ios-glyphs/24/10b981/facebook-new.png"/> Facebook
       </a>
     </div>
   </div>
 </section>
 
-</main>
-
-<footer class="mt-16 py-6 bg-lightbg border-t border-accent/30 text-center text-sm text-gray-500">
-<p>&copy; <span id="year"></span> Mohammad Muktadir Rafi. All Rights Reserved.</p>
+<footer class="mt-16 py-6 text-center text-white/70">
+  <p>&copy; <span id="year"></span> Mohammad Muktadir Rafi. All Rights Reserved.</p>
 </footer>
 
 <script>
