@@ -141,27 +141,7 @@ generateBtnMobile.addEventListener("click", async () => {
 downloadAllBtnMobile.addEventListener("click", async () => {
   downloadAllImages();
 });
-</script><!-- AI Generator -->
-<section id="ai-generator" class="mb-20 text-center relative">
-  <h3 class="text-4xl font-bold mb-6 text-yellow-400">Royal Bengal Tiger AI</h3>
-  <p class="mb-4 text-white/90">Generate 2 cinematic, realistic frames from your idea.</p>
-
-  <div class="max-w-3xl mx-auto bg-white/10 p-6 rounded-xl shadow-lg">
-    <textarea id="prompt" rows="3"
-      class="w-full p-3 rounded-lg text-black focus:ring-2 focus:ring-emerald-400"
-      placeholder="Describe your cinematic scene here..."></textarea>
-
-    <div class="flex flex-col sm:flex-row items-center justify-between mt-4 gap-4 sm:relative">
-      <!-- Desktop buttons -->
-      <div class="hidden sm:flex gap-4">
-        <button id="generateBtn" class="btn-emerald flex items-center justify-center">
-          <span id="btnText">Generate 2 Frames</span>
-          <div id="spinner" class="loader hidden ml-2"></div>
-        </button>
-        <button id="downloadAllBtn" class="btn-emerald hidden">Download All Frames</button>
-      </div>
-
-      <div id="limitMessage" class="mt-4 font-semibold text-emerald-100 text-center hidden"></div>
+div id="limitMessage" class="mt-4 font-semibold text-emerald-100 text-center hidden"></div>
       <div id="errorBox" class="mt-4 p-3 bg-red-100 text-red-700 rounded-xl hidden"><span id="errorMessage"></span></div>
 
       <div id="framesContainer" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -172,32 +152,6 @@ downloadAllBtnMobile.addEventListener("click", async () => {
     </div>
   </div>
 
-  <!-- Sticky mobile buttons -->
-  <div class="fixed bottom-0 left-0 w-full bg-white/10 backdrop-blur-md p-4 flex justify-center gap-4 sm:hidden border-t border-accent/30 z-50">
-    <button id="generateBtnMobile" class="btn-emerald flex-1 flex items-center justify-center">
-      <span>Generate</span>
-      <div id="spinnerMobile" class="loader hidden ml-2"></div>
-    </button>
-    <button id="downloadAllBtnMobile" class="btn-emerald flex-1 hidden">Download</button>
-  </div>
-</section>
-
-<script>
-// Mobile button integration
-const generateBtnMobile = document.getElementById("generateBtnMobile");
-const downloadAllBtnMobile = document.getElementById("downloadAllBtnMobile");
-const spinnerMobile = document.getElementById("spinnerMobile");
-
-generateBtnMobile.addEventListener("click", async () => {
-  // Trigger the same generateFrames function
-  generateFrames();
-  spinnerMobile.classList.toggle("hidden", false);
-});
-
-downloadAllBtnMobile.addEventListener("click", async () => {
-  downloadAllImages();
-});
-</script>
 <!-- Contact -->
 <section id="contact" class="mb-16">
   <h3 class="text-4xl font-bold text-center mb-8 text-white">Connect With Me</h3>
@@ -228,105 +182,172 @@ document.getElementById('year').textContent = new Date().getFullYear();
  </body>
 </html>
   
-  // AI Generator
-const API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev";
-const apiKey = "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"; // 🔹 Replace with your HF token
-const frameCount = 2;
-let imageBlobs = [];
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Story-Frame Generator (Realistic)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f9fb;
+    }
+    .container-bg {
+      background: linear-gradient(145deg, #ffffff, #f0f2f4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    .btn-primary {
+      background-color: #4f46e5;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .btn-primary:hover {
+      background-color: #4338ca;
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+      transform: translateY(-1px);
+    }
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #4f46e5;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .frame-image {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      min-height: 150px;
+    }
+  </style>
+</head>
+<body>
 
-const promptInput = document.getElementById("prompt");
-const generateBtn = document.getElementById("generateBtn");
-const btnText = document.getElementById("btnText");
-const spinner = document.getElementById("spinner");
-const framesContainer = document.getElementById("framesContainer");
-const errorBox = document.getElementById("errorBox");
-const errorMessage = document.getElementById("errorMessage");
-const downloadAllBtn = document.getElementById("downloadAllBtn");
-const limitMessage = document.getElementById("limitMessage");
+<div id="app" class="min-h-screen p-4 flex flex-col items-center">
+  <header class="w-full max-w-4xl text-center py-6">
+    <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">
+      AI Story-Frame Generator
+    </h1>
+    <p class="mt-2 text-lg text-gray-500">
+      Generate 4 cinematic, realistic frames from your idea.
+    </p>
+  </header>
 
-function updateLoadingState(isLoading) {
-  generateBtn.disabled = isLoading;
-  spinner.classList.toggle("hidden", !isLoading);
-  btnText.textContent = isLoading ? "Generating..." : "Generate 2 Frames";
-  errorBox.classList.add("hidden");
-}
+  <div class="w-full max-w-4xl container-bg p-6 md:p-8 rounded-xl">
+    <div class="mb-6">
+      <label for="prompt" class="block text-sm font-medium text-gray-700 mb-2">
+        Concept Prompt (e.g., "A detective chasing a glowing robot dog through a neon city street")
+      </label>
+      <textarea id="prompt" rows="3"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+        placeholder="Describe your cinematic scene here..."></textarea>
+    </div>
 
-function showError(msg) {
-  errorBox.classList.remove("hidden");
-  errorMessage.textContent = msg;
-}
+    <div class="flex flex-col sm:flex-row items-center justify-between">
+      <button id="generateBtn"
+        class="btn-primary text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl w-full sm:w-auto flex items-center justify-center disabled:opacity-50"
+        onclick="generateFrames()">
+        <span id="btnText">Generate 4 Frames</span>
+        <div id="spinner" class="loader ml-3 hidden"></div>
+      </button>
 
-function checkUserLimit() {
-  return localStorage.getItem("framesGenerated") === "true";
-}
+      <div id="statusMessage" class="mt-3 sm:mt-0 text-sm font-medium text-gray-600"></div>
+    </div>
 
-function setUserLimit() {
-  localStorage.setItem("framesGenerated", "true");
-}
+    <div id="framesContainer" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div id="placeholder"
+        class="md:col-span-2 text-center py-12 text-gray-400 border-2 border-dashed border-gray-300 rounded-xl">
+        Your AI-generated frames will appear here.
+      </div>
+    </div>
+  </div>
 
-function disableGenerateButton() {
-  generateBtn.style.display = "none";
-  limitMessage.textContent = "✅ You’ve generated your frames! Thank you for using Royal Bengal Tiger AI.";
-  limitMessage.classList.remove("hidden");
-}
+  <div id="errorBox"
+    class="w-full max-w-4xl mt-6 p-4 bg-red-100 text-red-700 border border-red-300 rounded-xl hidden">
+    <strong class="font-bold">Error:</strong> <span id="errorMessage"></span>
+  </div>
+</div>
 
-async function generateFrames() {
-  if (checkUserLimit()) { disableGenerateButton(); return; }
+<script>
+  // === CONFIGURATION ===
+  const API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev";
+  const apiKey = "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";  // 🔹 Paste your Hugging Face token here
+  const frameCount = 2;
 
-  const userPrompt = promptInput.value.trim();
-  if (!userPrompt) { showError("Please enter a concept prompt."); return; }
+  // === DOM ELEMENTS ===
+  const promptInput = document.getElementById("prompt");
+  const generateBtn = document.getElementById("generateBtn");
+  const btnText = document.getElementById("btnText");
+  const spinner = document.getElementById("spinner");
+  const framesContainer = document.getElementById("framesContainer");
+  const statusMessage = document.getElementById("statusMessage");
+  const errorBox = document.getElementById("errorBox");
+  const errorMessage = document.getElementById("errorMessage");
 
-  updateLoadingState(true);
-  framesContainer.innerHTML = "";
-  imageBlobs = [];
+  // === HELPERS ===
+  function updateLoadingState(isLoading, message = "") {
+    generateBtn.disabled = isLoading;
+    spinner.classList.toggle("hidden", !isLoading);
+    btnText.textContent = isLoading ? "Generating Frames..." : "Generate 4 Frames";
+    statusMessage.textContent = message;
+    errorBox.classList.add("hidden");
+  }
 
-  try {
-    for (let i=0; i<frameCount; i++) {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ inputs: `${userPrompt}, photorealistic, cinematic, frame ${i+1} of ${frameCount}, ultra detail.` })
-      });
-      if (!response.ok) throw new Error(`API Error: ${response.status}`);
-      const blob = await response.blob();
-      imageBlobs.push(blob);
-      const imageUrl = URL.createObjectURL(blob);
+  function showError(message) {
+    errorBox.classList.remove("hidden");
+    errorMessage.textContent = message;
+  }
 
-      const frameDiv = document.createElement("div");
-      frameDiv.className = "bg-white/20 p-2 rounded-xl shadow-lg text-center";
-      frameDiv.innerHTML = `
-        <img src="${imageUrl}" alt="Frame ${i+1}" class="frame-image w-full">
-        <a href="${imageUrl}" download="frame_${i+1}.png"
-          class="mt-2 inline-block text-yellow-300 font-semibold hover:underline">Download Frame ${i+1}</a>
-      `;
-      framesContainer.appendChild(frameDiv);
+  // === MAIN FUNCTION ===
+  async function generateFrames() {
+    const userPrompt = promptInput.value.trim();
+    if (!userPrompt) {
+      showError("Please enter a concept prompt.");
+      return;
     }
 
-    downloadAllBtn.classList.remove("hidden");
-    setUserLimit();
-    disableGenerateButton();
-    updateLoadingState(false);
-  } catch(err) {
-    showError(err.message);
-    updateLoadingState(false);
+    updateLoadingState(true, "Generating realistic frames...");
+
+    try {
+      framesContainer.innerHTML = "";
+
+      for (let i = 0; i < frameCount; i++) {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            inputs: `${userPrompt}, photorealistic, cinematic lighting, movie frame ${i + 1} of ${frameCount}, 8K UHD, realistic textures, depth of field, dramatic lighting, ultra detail.`,
+          }),
+        });
+
+        if (!response.ok) throw new Error(`API Error: ${response.status}`);
+        const blob = await response.blob();
+        const imageUrl = URL.createObjectURL(blob);
+
+        const frameDiv = document.createElement("div");
+        frameDiv.className = "bg-white p-2 rounded-xl shadow-lg";
+        frameDiv.innerHTML = `
+          <img src="${imageUrl}" alt="Frame ${i + 1}" class="frame-image w-full rounded-lg bg-gray-200">
+          <p class="text-center mt-2 text-sm font-medium text-gray-600">Frame ${i + 1} of ${frameCount}</p>
+        `;
+        framesContainer.appendChild(frameDiv);
+      }
+
+      updateLoadingState(false, `Generated ${frameCount} realistic frames!`);
+    } catch (error) {
+      showError(error.message);
+      updateLoadingState(false);
+    }
   }
-}
-
-async function downloadAllImages() {
-  const zip = new JSZip();
-  imageBlobs.forEach((blob,i) => zip.file(`frame_${i+1}.png`, blob));
-  const zipBlob = await zip.generateAsync({type:"blob"});
-  saveAs(zipBlob,"ai_frames.zip");
-}
-
-generateBtn.addEventListener("click", generateFrames);
-downloadAllBtn.addEventListener("click", downloadAllImages);
-
-if (checkUserLimit()) { disableGenerateButton(); }
 </script>
-
 </body>
 </html>
