@@ -85,6 +85,119 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
+  <!-- AI Generator -->
+<section id="ai-generator" class="mb-20 text-center relative">
+  <h3 class="text-4xl font-bold mb-6 text-yellow-400">Royal Bengal Tiger AI</h3>
+  <p class="mb-4 text-white/90">Generate 2 cinematic, realistic frames from your idea.</p>
+
+  <div class="max-w-3xl mx-auto bg-white/10 p-6 rounded-xl shadow-lg">
+    <textarea id="prompt" rows="3"
+      class="w-full p-3 rounded-lg text-black focus:ring-2 focus:ring-emerald-400"
+      placeholder="Describe your cinematic scene here..."></textarea>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between mt-4 gap-4 sm:relative">
+      <!-- Desktop buttons -->
+      <div class="hidden sm:flex gap-4">
+        <button id="generateBtn" class="btn-emerald flex items-center justify-center">
+          <span id="btnText">Generate 2 Frames</span>
+          <div id="spinner" class="loader hidden ml-2"></div>
+        </button>
+        <button id="downloadAllBtn" class="btn-emerald hidden">Download All Frames</button>
+      </div>
+
+      <div id="limitMessage" class="mt-4 font-semibold text-emerald-100 text-center hidden"></div>
+      <div id="errorBox" class="mt-4 p-3 bg-red-100 text-red-700 rounded-xl hidden"><span id="errorMessage"></span></div>
+
+      <div id="framesContainer" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="placeholder" class="md:col-span-2 text-center py-12 text-white/50 border-2 border-dashed border-white/30 rounded-xl">
+          Your AI-generated frames will appear here.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky mobile buttons -->
+  <div class="fixed bottom-0 left-0 w-full bg-white/10 backdrop-blur-md p-4 flex justify-center gap-4 sm:hidden border-t border-accent/30 z-50">
+    <button id="generateBtnMobile" class="btn-emerald flex-1 flex items-center justify-center">
+      <span>Generate</span>
+      <div id="spinnerMobile" class="loader hidden ml-2"></div>
+    </button>
+    <button id="downloadAllBtnMobile" class="btn-emerald flex-1 hidden">Download</button>
+  </div>
+</section>
+
+<script>
+// Mobile button integration
+const generateBtnMobile = document.getElementById("generateBtnMobile");
+const downloadAllBtnMobile = document.getElementById("downloadAllBtnMobile");
+const spinnerMobile = document.getElementById("spinnerMobile");
+
+generateBtnMobile.addEventListener("click", async () => {
+  // Trigger the same generateFrames function
+  generateFrames();
+  spinnerMobile.classList.toggle("hidden", false);
+});
+
+downloadAllBtnMobile.addEventListener("click", async () => {
+  downloadAllImages();
+});
+</script><!-- AI Generator -->
+<section id="ai-generator" class="mb-20 text-center relative">
+  <h3 class="text-4xl font-bold mb-6 text-yellow-400">Royal Bengal Tiger AI</h3>
+  <p class="mb-4 text-white/90">Generate 2 cinematic, realistic frames from your idea.</p>
+
+  <div class="max-w-3xl mx-auto bg-white/10 p-6 rounded-xl shadow-lg">
+    <textarea id="prompt" rows="3"
+      class="w-full p-3 rounded-lg text-black focus:ring-2 focus:ring-emerald-400"
+      placeholder="Describe your cinematic scene here..."></textarea>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between mt-4 gap-4 sm:relative">
+      <!-- Desktop buttons -->
+      <div class="hidden sm:flex gap-4">
+        <button id="generateBtn" class="btn-emerald flex items-center justify-center">
+          <span id="btnText">Generate 2 Frames</span>
+          <div id="spinner" class="loader hidden ml-2"></div>
+        </button>
+        <button id="downloadAllBtn" class="btn-emerald hidden">Download All Frames</button>
+      </div>
+
+      <div id="limitMessage" class="mt-4 font-semibold text-emerald-100 text-center hidden"></div>
+      <div id="errorBox" class="mt-4 p-3 bg-red-100 text-red-700 rounded-xl hidden"><span id="errorMessage"></span></div>
+
+      <div id="framesContainer" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="placeholder" class="md:col-span-2 text-center py-12 text-white/50 border-2 border-dashed border-white/30 rounded-xl">
+          Your AI-generated frames will appear here.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky mobile buttons -->
+  <div class="fixed bottom-0 left-0 w-full bg-white/10 backdrop-blur-md p-4 flex justify-center gap-4 sm:hidden border-t border-accent/30 z-50">
+    <button id="generateBtnMobile" class="btn-emerald flex-1 flex items-center justify-center">
+      <span>Generate</span>
+      <div id="spinnerMobile" class="loader hidden ml-2"></div>
+    </button>
+    <button id="downloadAllBtnMobile" class="btn-emerald flex-1 hidden">Download</button>
+  </div>
+</section>
+
+<script>
+// Mobile button integration
+const generateBtnMobile = document.getElementById("generateBtnMobile");
+const downloadAllBtnMobile = document.getElementById("downloadAllBtnMobile");
+const spinnerMobile = document.getElementById("spinnerMobile");
+
+generateBtnMobile.addEventListener("click", async () => {
+  // Trigger the same generateFrames function
+  generateFrames();
+  spinnerMobile.classList.toggle("hidden", false);
+});
+
+downloadAllBtnMobile.addEventListener("click", async () => {
+  downloadAllImages();
+});
+</script>
 <!-- Contact -->
 <section id="contact" class="mb-16">
   <h3 class="text-4xl font-bold text-center mb-8 text-white">Connect With Me</h3>
@@ -111,6 +224,108 @@ html { scroll-behavior: smooth; }
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+ </body>
+</html>
+  
+  // AI Generator
+const API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev";
+const apiKey = "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"; // 🔹 Replace with your HF token
+const frameCount = 2;
+let imageBlobs = [];
+
+const promptInput = document.getElementById("prompt");
+const generateBtn = document.getElementById("generateBtn");
+const btnText = document.getElementById("btnText");
+const spinner = document.getElementById("spinner");
+const framesContainer = document.getElementById("framesContainer");
+const errorBox = document.getElementById("errorBox");
+const errorMessage = document.getElementById("errorMessage");
+const downloadAllBtn = document.getElementById("downloadAllBtn");
+const limitMessage = document.getElementById("limitMessage");
+
+function updateLoadingState(isLoading) {
+  generateBtn.disabled = isLoading;
+  spinner.classList.toggle("hidden", !isLoading);
+  btnText.textContent = isLoading ? "Generating..." : "Generate 2 Frames";
+  errorBox.classList.add("hidden");
+}
+
+function showError(msg) {
+  errorBox.classList.remove("hidden");
+  errorMessage.textContent = msg;
+}
+
+function checkUserLimit() {
+  return localStorage.getItem("framesGenerated") === "true";
+}
+
+function setUserLimit() {
+  localStorage.setItem("framesGenerated", "true");
+}
+
+function disableGenerateButton() {
+  generateBtn.style.display = "none";
+  limitMessage.textContent = "✅ You’ve generated your frames! Thank you for using Royal Bengal Tiger AI.";
+  limitMessage.classList.remove("hidden");
+}
+
+async function generateFrames() {
+  if (checkUserLimit()) { disableGenerateButton(); return; }
+
+  const userPrompt = promptInput.value.trim();
+  if (!userPrompt) { showError("Please enter a concept prompt."); return; }
+
+  updateLoadingState(true);
+  framesContainer.innerHTML = "";
+  imageBlobs = [];
+
+  try {
+    for (let i=0; i<frameCount; i++) {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ inputs: `${userPrompt}, photorealistic, cinematic, frame ${i+1} of ${frameCount}, ultra detail.` })
+      });
+      if (!response.ok) throw new Error(`API Error: ${response.status}`);
+      const blob = await response.blob();
+      imageBlobs.push(blob);
+      const imageUrl = URL.createObjectURL(blob);
+
+      const frameDiv = document.createElement("div");
+      frameDiv.className = "bg-white/20 p-2 rounded-xl shadow-lg text-center";
+      frameDiv.innerHTML = `
+        <img src="${imageUrl}" alt="Frame ${i+1}" class="frame-image w-full">
+        <a href="${imageUrl}" download="frame_${i+1}.png"
+          class="mt-2 inline-block text-yellow-300 font-semibold hover:underline">Download Frame ${i+1}</a>
+      `;
+      framesContainer.appendChild(frameDiv);
+    }
+
+    downloadAllBtn.classList.remove("hidden");
+    setUserLimit();
+    disableGenerateButton();
+    updateLoadingState(false);
+  } catch(err) {
+    showError(err.message);
+    updateLoadingState(false);
+  }
+}
+
+async function downloadAllImages() {
+  const zip = new JSZip();
+  imageBlobs.forEach((blob,i) => zip.file(`frame_${i+1}.png`, blob));
+  const zipBlob = await zip.generateAsync({type:"blob"});
+  saveAs(zipBlob,"ai_frames.zip");
+}
+
+generateBtn.addEventListener("click", generateFrames);
+downloadAllBtn.addEventListener("click", downloadAllImages);
+
+if (checkUserLimit()) { disableGenerateButton(); }
 </script>
 
 </body>
